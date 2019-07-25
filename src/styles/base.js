@@ -6,6 +6,7 @@ export const dimensions = {
 };
 
 export const colors = {
+  //MUDE AQUI as cores
   primary: "#2d8fce",
   primary_dark: "#170030",
   secondary: "#347d94",
@@ -18,6 +19,7 @@ export const colors = {
 };
 
 export const padding = {
+  //MUDE AQUI os paddings padrões
   x_sm: 5,
   sm: 10,
   sm_md: 15,

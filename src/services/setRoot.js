@@ -34,7 +34,8 @@ const bottomTabs = {
           }
         }
       }
-    },
+    },//MUDE AQUI para adicionar mais telas
+    //TELA DE PERFIL
     {
       stack: {
         children: [
@@ -67,6 +68,7 @@ const bottomTabs = {
         }
       }
     },
+    //FIM DA TELA DE PERFIL
   ],
     options: {
     bottomTabs: {

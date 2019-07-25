@@ -1,26 +1,21 @@
 import { AsyncStorage } from "react-native";
-// import { goToAuth, goHome } from './navigation';
-import { USER_KEY } from "./config";
 
 const deviceStorage = {
   async saveItem(key, value) {
     try {
       await AsyncStorage.setItem(key, value);
       console.log("Saved " + key + "with value" + value);
-      // goToAuth();
     } catch (error) {
       console.log("AsyncStorage Error: " + error.message);
     }
   },
-  async loadToken() {
+  async loadItem(key) {
     try {
-      const value = await AsyncStorage.getItem(USER_KEY);
+      const value = await AsyncStorage.getItem(key);
       if (value !== null) {
         return value
       } else {
-        // this.setState({
-        //   loading: false
-        // });
+
       }
     } catch (error) {
       console.log("AsyncStorage Error: " + error.message);
