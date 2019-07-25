@@ -18,6 +18,7 @@ target 'UltraStarterProject' do
   pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
   pod 'React-RCTWebSocket', :path => '../node_modules/react-native/Libraries/WebSocket'
   pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
   pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
