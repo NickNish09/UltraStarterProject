@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Text, View } from 'react-native';
+import {Button, Text, View} from 'react-native';
+import {navigateTo} from "../helpers/navigation";
 
 export default class Profile extends Component {
 
@@ -12,8 +13,13 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
-        <Text>{this.state.profile}</Text>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <Button
+          title={'Cadastrar-se'}
+          onPress={
+            () => navigateTo("SignUp","Cadastro", this.props.componentId)
+          }
+        />
       </View>
     );
   }
