@@ -3,7 +3,7 @@ import {
   View,
   Text,
 } from 'react-native';
-import { goToHome } from "./src/services/setRoot";
+import { goToHome } from "./src/helpers/navigation";
 import SplashScreen from 'react-native-splash-screen';
 
 class App extends Component {

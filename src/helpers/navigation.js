@@ -12,7 +12,7 @@ const bottomTabs = {
               options: {
                 topBar: {
                   title: {
-                    text: "Home",
+                    text: "HOME",
                     alignment: "center",
                     color: 'white'
                   },
@@ -45,7 +45,7 @@ const bottomTabs = {
               options: {
                 topBar: {
                   title: {
-                    text: "Perfil",
+                    text: "PERFIL",
                     alignment: "center",
                     color: 'white'
                   },
@@ -108,3 +108,28 @@ export const goToHome = () => Navigation.setRoot({
     bottomTabs: bottomTabs
   }
 });
+
+export const navigateTo = (componentName, screenName, componentId) => {
+  Navigation.push(componentId, {
+    component: {
+      name: componentName,
+      options: {
+        topBar: {
+          visible: true,
+          drawBehind: false,
+          animate: true,
+          background: {
+            color: colors.primary_dark
+          },
+          backButton: {
+            color: "white"
+          },
+          title: {
+            text: screenName.toUpperCase(),
+            color: "white"
+          }
+        }
+      }
+    }
+  });
+};

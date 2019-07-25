@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
+import { navigateTo } from "../helpers/navigation";
 
 export default class Home extends Component {
 
@@ -14,6 +15,12 @@ export default class Home extends Component {
     return (
       <View style={{flex: 1}}>
         <Text>{this.state.welcome}</Text>
+        <Button
+          title={'Navegar'}
+          onPress={
+            () => navigateTo("Stack","Stacked", this.props.componentId)
+          }
+        />
       </View>
     );
   }
