@@ -1,6 +1,7 @@
 package com.ultrastarterproject;
 
 import android.app.Application;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import android.util.Log;
 
 import com.facebook.react.PackageList;
@@ -41,6 +42,7 @@ public class MainApplication extends NavigationApplication {
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
+            new SplashScreenReactPackage()  //here
         );
     }
 
