@@ -66,14 +66,14 @@ export const signUp = (email, password, passwordConfirm, first_name, last_name, 
             popToRoot(context.props.componentId);
           })
           .catch(function (error) {
-            console.log(error.response);
+            console.log(error.response.data);
             if(Platform.OS === 'android'){
               ToastAndroid.show('Erro ao se autenticar', ToastAndroid.SHORT);
             }
             context.setState({signIninProgress: false});
           });
       } catch (err) {
-        console.log(err.response);
+        console.log(err.response.data);
         context.setState({signIninProgress: false});
       }
     } else {
