@@ -31,6 +31,8 @@ target 'UltraStarterProject' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   target 'UltraStarterProjectTests' do
     inherit! :search_paths
     # Pods for testing
