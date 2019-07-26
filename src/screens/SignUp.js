@@ -65,10 +65,6 @@ export default class SignUp extends React.Component {
           />
         </View>
 
-        <TouchableOpacity style={styles.restoreButtonContainer}>
-          <Text style={baseStyles.textWhite}>Esqueceu a senha? Recuperar</Text>
-        </TouchableOpacity>
-
         <View style={styles.buttonGroup}>
           <TouchableOpacity style={[styles.buttonContainer, styles.loginButton]}>
             <Text style={styles.loginText}>Cadastrar</Text>

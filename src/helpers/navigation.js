@@ -34,7 +34,40 @@ const bottomTabs = {
           }
         }
       }
-    },//MUDE AQUI para adicionar mais telas
+    },
+    {
+      stack: {
+        children: [
+          {
+            component: {
+              name: "Blank",
+              options: {
+                topBar: {
+                  title: {
+                    text: "BLANK",
+                    alignment: "center",
+                    color: 'white'
+                  },
+                  background: {
+                    color: colors.primary_dark
+                  }
+                }
+              }
+            }
+          }
+        ],
+        options: {
+          bottomTab: {
+            text: "Blank",
+            textColor: "white",
+            selectedTextColor: colors.primary,
+            selectedIconColor: colors.primary,
+            icon: require("../assets/icons/list_white.png"),
+          }
+        }
+      }
+    },
+    //MUDE AQUI para adicionar mais telas
     //TELA DE PERFIL
     {
       stack: {

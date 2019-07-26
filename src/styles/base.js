@@ -48,6 +48,11 @@ export const baseStyles = {
     paddingVertical: padding.lg,
     width: dimensions.fullWidth
   },
+  centerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   header: {
     backgroundColor: colors.primary,
     fontSize: fonts.lg,
