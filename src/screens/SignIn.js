@@ -3,7 +3,6 @@ import {
   View,
   TouchableOpacity,
   Text,
-  Image,
   ActivityIndicator
 } from 'react-native'
 import {styles} from "../styles/SignUp";
@@ -11,17 +10,20 @@ import {navigateTo} from "../helpers/navigation";
 import {baseStyles, colors} from "../styles/base";
 import IconInput from "../components/auth/IconInput";
 import {CSComponent} from 'react-central-state'
-import {login} from '../helpers/api';
+import {login, signInWithGoogle} from '../helpers/api';
 import GoogleBtn from '../components/auth/GoogleBtn';
 import FacebookBtn from '../components/auth/FacebookBtn';
+import { GoogleSignin } from 'react-native-google-signin';
 
 class SignIn extends React.Component {
   constructor(props){
     super(props);
+    GoogleSignin.configure();
     this.state = {
       password: '',
       email: '',
       signIninProgress: false,
+      userInfo: {}
     }
   };
 
@@ -36,6 +38,10 @@ class SignIn extends React.Component {
   signIn = async () => {
     const { password, email } = this.state;
     login(email,password,this);
+  };
+
+  signInWithGoogle = async () => {
+    signInWithGoogle(this).done();
   };
 
   render() {
@@ -81,7 +87,7 @@ class SignIn extends React.Component {
         </TouchableOpacity>
 
         <FacebookBtn onPress={() => console.log("facebook")}/>
-        <GoogleBtn onPress={() => console.log("google")}/>
+        <GoogleBtn onPress={this.signInWithGoogle}/>
       </View>
     )
   }

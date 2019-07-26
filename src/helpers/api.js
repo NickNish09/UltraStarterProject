@@ -4,6 +4,7 @@ import deviceStorage from './storage';
 import {USER_KEY} from './config';
 import {popNavigation, popToRoot} from './navigation';
 import flash from './flash';
+import { GoogleSignin, statusCodes } from 'react-native-google-signin';
 export const baseURL = "http://192.168.0.184:3000/"; //MUDE AQUI
 
 const api = axios.create({
@@ -79,6 +80,27 @@ export const signUp = (email, password, passwordConfirm, first_name, last_name, 
     } else {
       flash("Erro ao entrar", "Preencha todos os campos");
       context.setState({signIninProgress: false});
+    }
+  }
+};
+
+//MUDE AQUI - crie uma conta no firebase e siga o tutorial pra conseguir o arquivo GoogleService.infopslist
+//https://github.com/react-native-community/react-native-google-signin/blob/master/docs/get-config-file.md
+export const signInWithGoogle = async (context) => {
+  try {
+    await GoogleSignin.hasPlayServices();
+    const userInfo = await GoogleSignin.signIn();
+    console.log(userInfo);
+    context.setState({ userInfo });
+  } catch (error) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // user cancelled the login flow
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // operation (f.e. sign in) is in progress already
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // play services not available or outdated
+    } else {
+      // some other error happened
     }
   }
 };
