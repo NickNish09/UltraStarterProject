@@ -12,6 +12,8 @@ import {baseStyles, colors} from "../styles/base";
 import IconInput from "../components/auth/IconInput";
 import {CSComponent} from 'react-central-state'
 import {login} from '../helpers/api';
+import GoogleBtn from '../components/auth/GoogleBtn';
+import FacebookBtn from '../components/auth/FacebookBtn';
 
 class SignIn extends React.Component {
   constructor(props){
@@ -78,23 +80,8 @@ class SignIn extends React.Component {
           <Text style={baseStyles.textWhite}>Ainda não possui conta? Registrar-se</Text>
         </TouchableOpacity>
 
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity style={[styles.buttonContainer, styles.fabookButton]}>
-            <View style={styles.socialButtonContent}>
-              <Image style={styles.icon} source={{uri: 'https://png.icons8.com/facebook/androidL/40/FFFFFF'}}/>
-              <Text style={styles.loginText}>Continue with facebook</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity style={[styles.buttonContainer, styles.googleButton]}>
-            <View style={styles.socialButtonContent}>
-              <Image style={styles.icon} source={{uri: 'https://png.icons8.com/google/androidL/40/FFFFFF'}}/>
-              <Text style={styles.loginText}>Sign in with google</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <FacebookBtn onPress={() => console.log("facebook")}/>
+        <GoogleBtn onPress={() => console.log("google")}/>
       </View>
     )
   }
