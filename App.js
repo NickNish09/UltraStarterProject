@@ -9,11 +9,13 @@ import deviceStorage from './src/helpers/storage';
 import {USER_KEY} from "./src/helpers/config";
 import { CSComponent } from "react-central-state";
 import {baseStyles} from "./src/styles/base";
+import api from './src/helpers/api';
 
 class App extends Component {
   async componentDidMount(){
     const item = await deviceStorage.loadItem(USER_KEY);
     const user = JSON.parse(item);
+    api.defaults.headers.common["Authorization"] = user.token;
     if(user !== null){
       this.setCentralState({user: user, userSignedIn: true});
     }
