@@ -14,6 +14,7 @@ import {login, signInWithGoogle} from '../helpers/api';
 import GoogleBtn from '../components/auth/GoogleBtn';
 import FacebookBtn from '../components/auth/FacebookBtn';
 import { GoogleSignin } from 'react-native-google-signin';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class SignIn extends React.Component {
   constructor(props){
@@ -47,6 +48,11 @@ class SignIn extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Spinner
+          visible={this.state.signIninProgress}
+          textContent={'Autenticando...'}
+          textStyle={styles.spinnerTextStyle}
+        />
         <IconInput
           onChangeText={this.onChangeText}
           inputKey={'email'}
@@ -66,15 +72,12 @@ class SignIn extends React.Component {
         </TouchableOpacity>
 
         <View style={styles.buttonGroup}>
-          {this.state.signIninProgress ?
-            <ActivityIndicator size="large" color={colors.primary} /> :
-            <TouchableOpacity
-              style={[styles.buttonContainer, styles.loginButton]}
-              onPress={() => this.signIn()}
-            >
-              <Text style={styles.loginText}>Entrar</Text>
-            </TouchableOpacity>
-          }
+          <TouchableOpacity
+            style={[styles.buttonContainer, styles.loginButton]}
+            onPress={() => this.signIn()}
+          >
+            <Text style={styles.loginText}>Entrar</Text>
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity

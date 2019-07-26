@@ -87,11 +87,12 @@ export const signUp = (email, password, passwordConfirm, first_name, last_name, 
 //MUDE AQUI - crie uma conta no firebase e siga o tutorial pra conseguir o arquivo GoogleService.infopslist
 //https://github.com/react-native-community/react-native-google-signin/blob/master/docs/get-config-file.md
 export const signInWithGoogle = async (context) => {
+  context.setState({signIninProgress: true});
   try {
     await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleSignin.signIn();
     console.log(userInfo);
-    context.setState({ userInfo });
+    context.setState({ userInfo, signIninProgress: false });
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
       // user cancelled the login flow
@@ -102,6 +103,7 @@ export const signInWithGoogle = async (context) => {
     } else {
       // some other error happened
     }
+    context.setState({signIninProgress: false});
   }
 };
 

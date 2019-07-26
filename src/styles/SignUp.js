@@ -72,5 +72,9 @@ export const styles = StyleSheet.create({
   socialIcon:{
     color: "#FFFFFF",
     marginRight:5
+  },
+  spinnerTextStyle: {
+    color: "#fff",
+    fontSize: 28
   }
 });
