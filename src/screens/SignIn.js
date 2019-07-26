@@ -4,18 +4,14 @@ import {
   TouchableOpacity,
   Text,
   Image,
-  ToastAndroid,
   ActivityIndicator
 } from 'react-native'
 import {styles} from "../styles/SignUp";
-import {navigateTo, popNavigation} from "../helpers/navigation";
+import {navigateTo} from "../helpers/navigation";
 import {baseStyles, colors} from "../styles/base";
 import IconInput from "../components/auth/IconInput";
 import {CSComponent} from 'react-central-state'
-import flash from "../helpers/flash";
-import api from '../helpers/api';
-import deviceStorage from "../helpers/storage";
-import { USER_KEY } from "../helpers/config";
+import {login} from '../helpers/api';
 
 class SignIn extends React.Component {
   constructor(props){
@@ -36,34 +32,9 @@ class SignIn extends React.Component {
   };
 
   signIn = async () => {
-    let self = this;
     this.setState({signIninProgress: true});
     const { password, email } = this.state;
-    if(email !== "" && password !== ""){
-      try {
-        api.post("v1/login.json", {
-          email: email,
-          password: password,
-        })
-          .then(function (response) {
-            ToastAndroid.show('Autenticação feita com sucesso! Entrando...', ToastAndroid.SHORT);
-            console.log(response.data);
-            self.setCentralState({ user: response.data, userSignedIn: true });
-            deviceStorage.saveItem(USER_KEY, JSON.stringify(response.data));
-            self.setState({signIninProgress: false});
-            popNavigation(self.props.componentId);
-          })
-          .catch(function (error) {
-            ToastAndroid.show('Erro ao se autenticar', ToastAndroid.SHORT);
-            self.setState({signIninProgress: false});
-          });
-      } catch (err) {
-        this.setState({signIninProgress: false});
-      }
-    } else {
-      flash("Erro ao entrar", "Preencha todos os campos")
-      this.setState({signIninProgress: false});
-    }
+    login(email,password,this);
   };
 
   render() {

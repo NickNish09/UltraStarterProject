@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, Button } from 'react-native';
-import { navigateTo } from "../helpers/navigation";
+import { Text, View } from 'react-native';
 import {baseStyles} from "../styles/base";
 
 export default class Home extends Component {
