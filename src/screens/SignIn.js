@@ -9,6 +9,7 @@ import {
 import {styles} from "../styles/SignUp";
 import {navigateTo} from "../helpers/navigation";
 import {baseStyles} from "../styles/base";
+import IconInput from "../components/auth/IconInput";
 
 export default class SignUp extends React.Component {
   constructor(props){
@@ -35,25 +36,19 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <Image style={[styles.icon, styles.inputIcon]} source={require('../assets/images/mail.png')}/>
-          <TextInput style={styles.inputs}
-                     placeholder="Email"
-                     keyboardType="email-address"
-                     underlineColorAndroid='transparent'
-                     onChangeText={val => this.onChangeText('email', val)}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Image style={[styles.icon, styles.inputIcon]} source={require('../assets/images/lock.png')}/>
-          <TextInput style={styles.inputs}
-                     placeholder="Password"
-                     secureTextEntry={true}
-                     underlineColorAndroid='transparent'
-                     onChangeText={val => this.onChangeText('password', val)}
-          />
-        </View>
+        <IconInput
+          onChangeText={this.onChangeText}
+          inputKey={'email'}
+          placeholder={'Email'}
+          icon={require('../assets/images/mail.png')}
+        />
+        <IconInput
+          onChangeText={this.onChangeText}
+          isSecureTextEntry={true}
+          inputKey={'password'}
+          placeholder={'Password'}
+          icon={require('../assets/images/lock.png')}
+        />
 
         <TouchableOpacity style={styles.restoreButtonContainer}>
           <Text style={baseStyles.textWhite}>Esqueceu a senha? Recuperar</Text>
