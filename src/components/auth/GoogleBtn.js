@@ -9,7 +9,7 @@ const GoogleBtn = ({onPress}) => (
       onPress={onPress}
     >
       <View style={styles.socialButtonContent}>
-        <Image style={styles.icon} source={{uri: 'https://png.icons8.com/google/androidL/40/FFFFFF'}}/>
+        <Image style={styles.icon} source={require('../../assets/images/googleIcon.png')}/>
         <Text style={styles.loginText}>Sign in with google</Text>
       </View>
     </TouchableOpacity>

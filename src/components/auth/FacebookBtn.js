@@ -9,7 +9,7 @@ const FacebookBtn = ({onPress}) => (
       onPress={onPress}
     >
       <View style={styles.socialButtonContent}>
-        <Image style={styles.icon} source={{uri: 'https://png.icons8.com/facebook/androidL/40/FFFFFF'}}/>
+        <Image style={styles.icon} source={require('../../assets/images/facebookIcon.png')}/>
         <Text style={styles.loginText}>Continue with facebook</Text>
       </View>
     </TouchableOpacity>
