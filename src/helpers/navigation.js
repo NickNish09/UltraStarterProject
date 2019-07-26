@@ -176,3 +176,7 @@ export const navigateTo = (componentName, screenName, componentId, passProps) =>
 export const popNavigation = (componentId) => {
   Navigation.pop(componentId);
 };
+
+export const popToRoot = (componentId) => {
+  Navigation.popToRoot(componentId);
+};

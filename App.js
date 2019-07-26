@@ -15,9 +15,9 @@ class App extends Component {
   async componentDidMount(){
     const item = await deviceStorage.loadItem(USER_KEY);
     const user = JSON.parse(item);
-    api.defaults.headers.common["Authorization"] = user.token;
     if(user !== null){
       this.setCentralState({user: user, userSignedIn: true});
+      api.defaults.headers.common["Authorization"] = user.token;
     }
     goToHome();
     SplashScreen.hide();
