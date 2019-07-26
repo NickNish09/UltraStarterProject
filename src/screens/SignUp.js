@@ -10,6 +10,7 @@ import {baseStyles, colors} from "../styles/base";
 import IconInput from "../components/auth/IconInput";
 import {signUp} from '../helpers/api';
 import { CSComponent } from 'react-central-state';
+import {popNavigation} from '../helpers/navigation';
 
 class SignUp extends React.Component {
   constructor(props){

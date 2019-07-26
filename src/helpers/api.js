@@ -66,17 +66,18 @@ export const signUp = (email, password, passwordConfirm, first_name, last_name, 
             popToRoot(context.props.componentId);
           })
           .catch(function (error) {
-            console.log(error);
+            console.log(error.response);
             if(Platform.OS === 'android'){
               ToastAndroid.show('Erro ao se autenticar', ToastAndroid.SHORT);
             }
             context.setState({signIninProgress: false});
           });
       } catch (err) {
+        console.log(err.response);
         context.setState({signIninProgress: false});
       }
     } else {
-      flash("Erro ao entrar", "Preencha todos os campos")
+      flash("Erro ao entrar", "Preencha todos os campos");
       context.setState({signIninProgress: false});
     }
   }
