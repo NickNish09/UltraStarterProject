@@ -9,12 +9,14 @@ import {
 import {styles} from "../styles/SignUp";
 import {popNavigation} from "../helpers/navigation";
 import { baseStyles } from "../styles/base";
+import IconInput from "../components/auth/IconInput";
 
 export default class SignUp extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       password: '',
+      passwordConfirm: '',
       email: ''
     }
   };
@@ -35,35 +37,26 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <Image style={[styles.icon, styles.inputIcon]} source={require('../assets/images/mail.png')}/>
-          <TextInput style={styles.inputs}
-                     placeholder="Email"
-                     keyboardType="email-address"
-                     underlineColorAndroid='transparent'
-                     onChangeText={val => this.onChangeText('email', val)}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Image style={[styles.icon, styles.inputIcon]} source={require('../assets/images/lock.png')}/>
-          <TextInput style={styles.inputs}
-                     placeholder="Password"
-                     secureTextEntry={true}
-                     underlineColorAndroid='transparent'
-                     onChangeText={val => this.onChangeText('password', val)}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Image style={[styles.icon, styles.inputIcon]} source={require('../assets/images/lock.png')}/>
-          <TextInput style={styles.inputs}
-                     placeholder="Password Confirm"
-                     secureTextEntry={true}
-                     underlineColorAndroid='transparent'
-                     onChangeText={val => this.onChangeText('passwordConfirm', val)}
-          />
-        </View>
+        <IconInput
+          onChangeText={this.onChangeText}
+          inputKey={'email'}
+          placeholder={'Email'}
+          icon={require('../assets/images/mail.png')}
+        />
+        <IconInput
+          onChangeText={this.onChangeText}
+          isSecureTextEntry={true}
+          inputKey={'password'}
+          placeholder={'Password'}
+          icon={require('../assets/images/lock.png')}
+        />
+        <IconInput
+          onChangeText={this.onChangeText}
+          isSecureTextEntry={true}
+          inputKey={'passwordConfirm'}
+          placeholder={'Password Confirm'}
+          icon={require('../assets/images/lock.png')}
+        />
 
         <View style={styles.buttonGroup}>
           <TouchableOpacity style={[styles.buttonContainer, styles.loginButton]}>
@@ -80,23 +73,6 @@ export default class SignUp extends React.Component {
           <Text style={baseStyles.textWhite}>Já possui conta? entrar</Text>
         </TouchableOpacity>
 
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity style={[styles.buttonContainer, styles.fabookButton]}>
-            <View style={styles.socialButtonContent}>
-              <Image style={styles.icon} source={{uri: 'https://png.icons8.com/facebook/androidL/40/FFFFFF'}}/>
-              <Text style={styles.loginText}>Continue with facebook</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity style={[styles.buttonContainer, styles.googleButton]}>
-            <View style={styles.socialButtonContent}>
-              <Image style={styles.icon} source={{uri: 'https://png.icons8.com/google/androidL/40/FFFFFF'}}/>
-              <Text style={styles.loginText}>Sign in with google</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
       </View>
     )
   }
