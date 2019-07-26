@@ -32,7 +32,6 @@ class SignIn extends React.Component {
   };
 
   signIn = async () => {
-    this.setState({signIninProgress: true});
     const { password, email } = this.state;
     login(email,password,this);
   };

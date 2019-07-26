@@ -3,18 +3,12 @@ import {
   View,
   TouchableOpacity,
   Text,
-  ToastAndroid,
   ActivityIndicator,
-  Platform
 } from 'react-native'
 import {styles} from "../styles/SignUp";
-import {popToRoot} from "../helpers/navigation";
 import {baseStyles, colors} from "../styles/base";
 import IconInput from "../components/auth/IconInput";
-import api from "../helpers/api";
-import deviceStorage from "../helpers/storage";
-import {USER_KEY} from "../helpers/config";
-import flash from "../helpers/flash";
+import {signUp} from '../helpers/api';
 import { CSComponent } from 'react-central-state';
 
 class SignUp extends React.Component {
@@ -39,48 +33,8 @@ class SignUp extends React.Component {
   }
 
   signUp = async () => {
-    let self = this;
     const { password, email, passwordConfirm, first_name, last_name } = this.state;
-    this.setState({signIninProgress: true});
-    if(password !== passwordConfirm){
-      flash("Senhas não conferem", "Redigite as senhas");
-      this.setState({signIninProgress: false});
-    } else {
-      if(email !== "" && password !== "" && passwordConfirm !== "" && first_name !== "" && last_name !== ""){
-        try {
-          api.post("v1/cadastro.json", {
-            user: {
-              email: email,
-              password: password,
-              first_name: first_name,
-              last_name: last_name,
-            }
-          })
-            .then(function (response) {
-              if(Platform.OS === 'android'){
-               ToastAndroid.show('Cadastro feito com sucesso! Entrando...', ToastAndroid.SHORT);
-              }
-              console.log(response.data);
-              self.setCentralState({ user: response.data, userSignedIn: true });
-              deviceStorage.saveItem(USER_KEY, JSON.stringify(response.data));
-              self.setState({signIninProgress: false});
-              popToRoot(self.props.componentId);
-            })
-            .catch(function (error) {
-              console.log(error);
-              if(Platform.OS === 'android'){
-               ToastAndroid.show('Erro ao se autenticar', ToastAndroid.SHORT);
-              }
-              self.setState({signIninProgress: false});
-            });
-        } catch (err) {
-          this.setState({signIninProgress: false});
-        }
-      } else {
-        flash("Erro ao entrar", "Preencha todos os campos")
-        this.setState({signIninProgress: false});
-      }
-    }
+    signUp(email, password, passwordConfirm, first_name, last_name, this);
   };
 
   render() {
