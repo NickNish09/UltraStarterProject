@@ -10,6 +10,7 @@ const IconInput = ({inputKey, onChangeText, isSecureTextEntry, placeholder, icon
                secureTextEntry={isSecureTextEntry}
                underlineColorAndroid='transparent'
                onChangeText={val => onChangeText(inputKey, val)}
+               autoCapitalize={'none'}
     />
   </View>
 );

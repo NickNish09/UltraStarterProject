@@ -13,8 +13,7 @@ import {baseStyles} from "./src/styles/base";
 class App extends Component {
   async componentDidMount(){
     const item = await deviceStorage.loadItem(USER_KEY);
-    const user = item;
-    console.log(user);
+    const user = JSON.parse(item);
     if(user !== null){
       this.setCentralState({user: user, userSignedIn: true});
     }

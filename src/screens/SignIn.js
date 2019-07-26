@@ -49,9 +49,9 @@ class SignIn extends React.Component {
             ToastAndroid.show('Autenticação feita com sucesso! Entrando...', ToastAndroid.SHORT);
             console.log(response.data);
             self.setCentralState({ user: response.data, userSignedIn: true });
-            deviceStorage.saveItem(USER_KEY, response.data);
+            deviceStorage.saveItem(USER_KEY, JSON.stringify(response.data));
             self.setState({signIninProgress: false});
-            popNavigation(this.props.componentId);
+            popNavigation(self.props.componentId);
           })
           .catch(function (error) {
             ToastAndroid.show('Erro ao se autenticar', ToastAndroid.SHORT);
