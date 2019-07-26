@@ -15,7 +15,7 @@ const deviceStorage = {
       if (value !== null) {
         return value
       } else {
-
+        return null
       }
     } catch (error) {
       console.log("AsyncStorage Error: " + error.message);

@@ -8,7 +8,7 @@ import {
   ActivityIndicator
 } from 'react-native'
 import {styles} from "../styles/SignUp";
-import {navigateTo} from "../helpers/navigation";
+import {navigateTo, popNavigation} from "../helpers/navigation";
 import {baseStyles, colors} from "../styles/base";
 import IconInput from "../components/auth/IconInput";
 import {CSComponent} from 'react-central-state'
@@ -51,6 +51,7 @@ class SignIn extends React.Component {
             self.setCentralState({ user: response.data, userSignedIn: true });
             deviceStorage.saveItem(USER_KEY, response.data);
             self.setState({signIninProgress: false});
+            popNavigation(this.props.componentId);
           })
           .catch(function (error) {
             ToastAndroid.show('Erro ao se autenticar', ToastAndroid.SHORT);
@@ -67,10 +68,6 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      this.centralState.userSignedIn ?
-      <View style={baseStyles.centerContainer}>
-        <Text>Logado como {this.centralState.user.first_name}</Text>
-      </View> :
       <View style={styles.container}>
         <IconInput
           onChangeText={this.onChangeText}
