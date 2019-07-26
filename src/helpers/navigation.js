@@ -109,10 +109,16 @@ export const goToHome = () => Navigation.setRoot({
   }
 });
 
-export const navigateTo = (componentName, screenName, componentId) => {
+export const navigateTo = (componentName, screenName, componentId, passProps) => {
   Navigation.push(componentId, {
     component: {
       name: componentName,
+      passProps: [
+        {
+        componentId: componentId
+        },
+        passProps
+      ],
       options: {
         topBar: {
           visible: true,
@@ -132,4 +138,8 @@ export const navigateTo = (componentName, screenName, componentId) => {
       }
     }
   });
+};
+
+export const popNavigation = (componentId) => {
+  Navigation.pop(componentId);
 };

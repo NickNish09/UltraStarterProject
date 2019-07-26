@@ -17,7 +17,7 @@ export default class Profile extends Component {
         <Button
           title={'Cadastrar-se'}
           onPress={
-            () => navigateTo("SignUp","Cadastro", this.props.componentId)
+            () => navigateTo("SignIn","Login", this.props.componentId)
           }
         />
       </View>

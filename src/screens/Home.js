@@ -15,12 +15,6 @@ export default class Home extends Component {
     return (
       <View style={{flex: 1}}>
         <Text>{this.state.welcome}</Text>
-        <Button
-          title={'Navegar'}
-          onPress={
-            () => navigateTo("Stack","Stacked", this.props.componentId)
-          }
-        />
       </View>
     );
   }

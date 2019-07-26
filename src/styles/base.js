@@ -42,7 +42,7 @@ export const fonts = {
   primary: "Cochin"
 };
 
-const baseStyles = {
+export const baseStyles = {
   container: {
     paddingHorizontal: padding.sm,
     paddingVertical: padding.lg,
@@ -61,6 +61,9 @@ const baseStyles = {
   section: {
     paddingVertical: padding.lg,
     paddingHorizontal: padding.xl
+  },
+  textWhite: {
+    color: '#fff'
   },
   textSecondary: {
     color: colors.light_gray,

@@ -7,8 +7,8 @@ import {
   Image
 } from 'react-native'
 import {styles} from "../styles/SignUp";
-import {popNavigation} from "../helpers/navigation";
-import { baseStyles } from "../styles/base";
+import {navigateTo} from "../helpers/navigation";
+import {baseStyles} from "../styles/base";
 
 export default class SignUp extends React.Component {
   constructor(props){
@@ -55,33 +55,23 @@ export default class SignUp extends React.Component {
           />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Image style={[styles.icon, styles.inputIcon]} source={require('../assets/images/lock.png')}/>
-          <TextInput style={styles.inputs}
-                     placeholder="Password Confirm"
-                     secureTextEntry={true}
-                     underlineColorAndroid='transparent'
-                     onChangeText={val => this.onChangeText('passwordConfirm', val)}
-          />
-        </View>
-
         <TouchableOpacity style={styles.restoreButtonContainer}>
           <Text style={baseStyles.textWhite}>Esqueceu a senha? Recuperar</Text>
         </TouchableOpacity>
 
         <View style={styles.buttonGroup}>
           <TouchableOpacity style={[styles.buttonContainer, styles.loginButton]}>
-            <Text style={styles.loginText}>Cadastrar</Text>
+            <Text style={styles.loginText}>Entrar</Text>
           </TouchableOpacity>
         </View>
 
         <TouchableOpacity
           style={styles.registerButton}
           onPress={
-            () => popNavigation(this.props.componentId)
+            () => navigateTo("SignUp","Cadastro", this.props.componentId)
           }
         >
-          <Text style={baseStyles.textWhite}>Já possui conta? entrar</Text>
+          <Text style={baseStyles.textWhite}>Ainda não possui conta? Registrar-se</Text>
         </TouchableOpacity>
 
         <View style={styles.buttonGroup}>
