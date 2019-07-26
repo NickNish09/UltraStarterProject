@@ -91,6 +91,38 @@ export const signInWithGoogle = async (context) => {
   try {
     await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleSignin.signIn();
+    try {
+      api.post("v1/google_oauth2.json", {
+        user: {
+          email: userInfo.user.email,
+          first_name: userInfo.user.givenName,
+          last_name: userInfo.user.familyName,
+          avatar_url: userInfo.user.photo,
+          id: userInfo.user.id
+        },
+        idToken: userInfo.idToken
+      })
+        .then(function (response) {
+          if(Platform.OS === 'android'){
+            ToastAndroid.show('Cadastro feito com sucesso! Entrando...', ToastAndroid.SHORT);
+          }
+          console.log(response.data);
+          context.setCentralState({ user: response.data, userSignedIn: true });
+          deviceStorage.saveItem(USER_KEY, JSON.stringify(response.data));
+          context.setState({signIninProgress: false});
+          popToRoot(context.props.componentId);
+        })
+        .catch(function (error) {
+          console.log(error.response.data);
+          if(Platform.OS === 'android'){
+            ToastAndroid.show('Erro ao se autenticar', ToastAndroid.SHORT);
+          }
+          context.setState({signIninProgress: false});
+        });
+    } catch (err) {
+      console.log(err.response.data);
+      context.setState({signIninProgress: false});
+    }
     console.log(userInfo);
     context.setState({ userInfo, signIninProgress: false });
   } catch (error) {
