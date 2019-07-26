@@ -3,8 +3,6 @@ import {
   View,
   TouchableOpacity,
   Text,
-  TextInput,
-  Image
 } from 'react-native'
 import {styles} from "../styles/SignUp";
 import {popNavigation} from "../helpers/navigation";
