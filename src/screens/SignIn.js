@@ -3,38 +3,74 @@ import {
   View,
   TouchableOpacity,
   Text,
-  TextInput,
-  Image
+  Image,
+  ToastAndroid,
+  ActivityIndicator
 } from 'react-native'
 import {styles} from "../styles/SignUp";
 import {navigateTo} from "../helpers/navigation";
-import {baseStyles} from "../styles/base";
+import {baseStyles, colors} from "../styles/base";
 import IconInput from "../components/auth/IconInput";
+import {CSComponent} from 'react-central-state'
+import flash from "../helpers/flash";
+import api from '../helpers/api';
+import deviceStorage from "../helpers/storage";
+import { USER_KEY } from "../helpers/config";
 
-export default class SignUp extends React.Component {
+class SignIn extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       password: '',
-      email: ''
+      email: '',
+      signIninProgress: false,
     }
   };
+
+  updateWith(){
+    return ['user', 'userSignedIn'];
+  }
 
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
   };
 
-  signUp = async () => {
+  signIn = async () => {
+    let self = this;
+    this.setState({signIninProgress: true});
     const { password, email } = this.state;
-    try {
-      // here place your signup logic
-    } catch (err) {
-      console.log('error signing up: ', err);
+    if(email !== "" && password !== ""){
+      try {
+        api.post("v1/login.json", {
+          email: email,
+          password: password,
+        })
+          .then(function (response) {
+            ToastAndroid.show('Autenticação feita com sucesso! Entrando...', ToastAndroid.SHORT);
+            console.log(response.data);
+            self.setCentralState({ user: response.data, userSignedIn: true });
+            deviceStorage.saveItem(USER_KEY, response.data);
+            self.setState({signIninProgress: false});
+          })
+          .catch(function (error) {
+            ToastAndroid.show('Erro ao se autenticar', ToastAndroid.SHORT);
+            self.setState({signIninProgress: false});
+          });
+      } catch (err) {
+        this.setState({signIninProgress: false});
+      }
+    } else {
+      flash("Erro ao entrar", "Preencha todos os campos")
+      this.setState({signIninProgress: false});
     }
   };
 
   render() {
     return (
+      this.centralState.userSignedIn ?
+      <View style={baseStyles.centerContainer}>
+        <Text>Logado como {this.centralState.user.first_name}</Text>
+      </View> :
       <View style={styles.container}>
         <IconInput
           onChangeText={this.onChangeText}
@@ -55,9 +91,15 @@ export default class SignUp extends React.Component {
         </TouchableOpacity>
 
         <View style={styles.buttonGroup}>
-          <TouchableOpacity style={[styles.buttonContainer, styles.loginButton]}>
-            <Text style={styles.loginText}>Entrar</Text>
-          </TouchableOpacity>
+          {this.state.signIninProgress ?
+            <ActivityIndicator size="large" color={colors.primary} /> :
+            <TouchableOpacity
+              style={[styles.buttonContainer, styles.loginButton]}
+              onPress={() => this.signIn()}
+            >
+              <Text style={styles.loginText}>Entrar</Text>
+            </TouchableOpacity>
+          }
         </View>
 
         <TouchableOpacity
@@ -90,3 +132,5 @@ export default class SignUp extends React.Component {
     )
   }
 }
+
+export default CSComponent(SignIn);
