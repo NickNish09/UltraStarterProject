@@ -8,8 +8,6 @@ import com.facebook.react.PackageList;
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.react.ReactApplication;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
@@ -17,6 +15,8 @@ import com.facebook.soloader.SoLoader;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;  // <--- import
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +44,9 @@ public class MainApplication extends NavigationApplication {
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
-            new SplashScreenReactPackage()  //here
+            new SplashScreenReactPackage(),  //here
+            new AsyncStoragePackage(),
+            new RNGoogleSigninPackage()
         );
     }
 
