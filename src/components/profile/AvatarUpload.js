@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Image, Text } from 'react-native';
 import {baseStyles} from "../../styles/base";
 import ImagePicker from 'react-native-image-crop-picker';
 import Modal from "react-native-modal";
+import {uploadAvatar} from '../../helpers/api';
 
 //Avatar upload component
 export default class AvatarUpload extends Component {
@@ -16,7 +17,6 @@ export default class AvatarUpload extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.placeholderImage);
     this.setState({image: {uri: this.props.placeholderImage}});
   }
 
@@ -31,9 +31,12 @@ export default class AvatarUpload extends Component {
       cropping: true,
       includeBase64: true
     }).then(image => {
-      this.setState({image: {uri: image.path, width: image.width, height: image.height, mime: image.mime}});
+      this.setState({
+        image: {uri: image.path, width: image.width, height: image.height, mime: image.mime},
+        modalVisibility: false
+      });
+      uploadAvatar(image.data, image.mime);
       console.log(image);
-      this.setState({modalVisibility: false});
     });
   }
 

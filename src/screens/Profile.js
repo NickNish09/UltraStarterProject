@@ -25,11 +25,23 @@ class Profile extends Component {
     this.setCentralState({user: null, userSignedIn: false});
   };
 
+  placeholderUrl(){
+    if(this.centralState.user.avatar !== ""){
+      return this.centralState.user.avatar;
+    } else {
+      return 'https://cdn3.iconfinder.com/data/icons/user-icon-4-1/100/user_2-07-512.png'
+    }
+  }
+
   render() {
     return (
       this.centralState.userSignedIn ?
       <View style={baseStyles.centerContainer}>
-        <AvatarUpload placeholderImage={'https://cdn3.iconfinder.com/data/icons/user-icon-4-1/100/user_2-07-512.png'}/>
+        <AvatarUpload
+          placeholderImage={
+            this.placeholderUrl()
+          }
+        />
         <Text>Logado como {this.centralState.user.first_name}</Text>
         <Button title={'Sair'} onPress={this.logout}/>
       </View> :
