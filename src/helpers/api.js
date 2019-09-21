@@ -5,7 +5,7 @@ import {USER_KEY} from './config';
 import {popNavigation, popToRoot} from './navigation';
 import flash from './flash';
 import { GoogleSignin, statusCodes } from 'react-native-google-signin';
-export const baseURL = "http://192.168.0.184:3000/"; //MUDE AQUI
+export const baseURL = "http://192.168.1.197:3000/"; //MUDE AQUI
 
 const api = axios.create({
   baseURL

@@ -5,6 +5,7 @@ import {baseStyles} from "../styles/base";
 import { CSComponent } from 'react-central-state';
 import deviceStorage from "../helpers/storage";
 import {USER_KEY} from "../helpers/config";
+import AvatarUpload from '../components/profile/AvatarUpload';
 
 class Profile extends Component {
 
@@ -28,6 +29,7 @@ class Profile extends Component {
     return (
       this.centralState.userSignedIn ?
       <View style={baseStyles.centerContainer}>
+        <AvatarUpload/>
         <Text>Logado como {this.centralState.user.first_name}</Text>
         <Button title={'Sair'} onPress={this.logout}/>
       </View> :
