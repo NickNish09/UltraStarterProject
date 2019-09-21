@@ -29,7 +29,7 @@ class Profile extends Component {
     return (
       this.centralState.userSignedIn ?
       <View style={baseStyles.centerContainer}>
-        <AvatarUpload/>
+        <AvatarUpload placeholderImage={'https://cdn3.iconfinder.com/data/icons/user-icon-4-1/100/user_2-07-512.png'}/>
         <Text>Logado como {this.centralState.user.first_name}</Text>
         <Button title={'Sair'} onPress={this.logout}/>
       </View> :

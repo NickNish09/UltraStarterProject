@@ -14,7 +14,8 @@ export default class AvatarUpload extends Component {
   }
 
   componentDidMount() {
-    this.setState({image: this.props.image});
+    console.log(this.props.placeholderImage);
+    this.setState({image: {uri: this.props.placeholderImage}});
   }
 
   selectImage(){
