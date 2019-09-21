@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { Text, TouchableOpacity, Image } from 'react-native';
+import { View, TouchableOpacity, Image, Text } from 'react-native';
 import {baseStyles} from "../../styles/base";
 import ImagePicker from 'react-native-image-crop-picker';
+import Modal from "react-native-modal";
 
 //Avatar upload component
 export default class AvatarUpload extends Component {
@@ -10,6 +11,7 @@ export default class AvatarUpload extends Component {
     super(props);
     this.state = {
       image: null,
+      modalVisibility: false
     };
   }
 
@@ -19,6 +21,10 @@ export default class AvatarUpload extends Component {
   }
 
   selectImage(){
+    this.setState({modalVisibility: true});
+  }
+
+  selectImageFromGallery(){
     ImagePicker.openPicker({
       width: 300,
       height: 300,
@@ -27,17 +33,44 @@ export default class AvatarUpload extends Component {
     }).then(image => {
       this.setState({image: {uri: image.path, width: image.width, height: image.height, mime: image.mime}});
       console.log(image);
+      this.setState({modalVisibility: false});
+    });
+  }
+
+  selectFromCamera(){
+    ImagePicker.openCamera({
+      width: 300,
+      height: 300,
+      cropping: true,
+    }).then(image => {
+      this.setState({image: {uri: image.path, width: image.width, height: image.height, mime: image.mime}});
+      console.log(image);
+      this.setState({modalVisibility: false});
     });
   }
 
   render() {
     return (
-      <TouchableOpacity onPress={() => this.selectImage()}>
-        <Image
-          style={{width: 100, height: 100, resizeMode: 'contain', borderRadius: 100}}
-          source={this.state.image}
-        />
-      </TouchableOpacity>
+      <View>
+        <Modal
+          isVisible={this.state.modalVisibility} style={{flex: 1}}
+          backdropOpacity={0.5}
+          onBackdropPress={() => this.setState({ modalVisibility: false })}
+        >
+          <TouchableOpacity onPress={() => this.selectFromCamera()}>
+            <Text>Select from camera...</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.selectImageFromGallery()}>
+            <Text>Select from gallery...</Text>
+          </TouchableOpacity>
+        </Modal>
+        <TouchableOpacity onPress={() => this.selectImage()}>
+          <Image
+            style={{width: 100, height: 100, resizeMode: 'contain', borderRadius: 100}}
+            source={this.state.image}
+          />
+        </TouchableOpacity>
+      </View>
     );
   }
 }
