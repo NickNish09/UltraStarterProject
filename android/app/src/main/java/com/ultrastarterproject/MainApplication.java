@@ -9,6 +9,7 @@ import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.react.ReactApplication;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
@@ -48,7 +49,8 @@ public class MainApplication extends NavigationApplication {
             new SplashScreenReactPackage(),  //here
             new AsyncStoragePackage(),
             new RNGoogleSigninPackage(),
-            new PickerPackage()
+            new PickerPackage(),
+            new VectorIconsPackage()
         );
     }
 

@@ -14,12 +14,14 @@
     "react": "16.8.6",
     "react-central-state": "^1.0.16",
     "react-native": "0.60.3",
+    "react-native-elements": "^1.2.1",
     "react-native-google-signin": "^2.0.0",
     "react-native-image-crop-picker": "^0.25.2",
     "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-modal": "^11.3.1",
     "react-native-navigation": "^3.0.0-alpha.8",
-    "react-native-splash-screen": "^3.2.0"
+    "react-native-splash-screen": "^3.2.0",
+    "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
