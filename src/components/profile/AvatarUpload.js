@@ -45,10 +45,14 @@ export default class AvatarUpload extends Component {
       width: 300,
       height: 300,
       cropping: true,
+      includeBase64: true
     }).then(image => {
-      this.setState({image: {uri: image.path, width: image.width, height: image.height, mime: image.mime}});
+      this.setState({
+        image: {uri: image.path, width: image.width, height: image.height, mime: image.mime},
+        modalVisibility: false
+      });
+      uploadAvatar(image.data, image.mime);
       console.log(image);
-      this.setState({modalVisibility: false});
     });
   }
 
