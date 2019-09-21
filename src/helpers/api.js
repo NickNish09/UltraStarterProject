@@ -40,6 +40,18 @@ export const login = (email, password, context) => {
   }
 };
 
+export const tokenLogin = (token, context) => {
+  api.post("v1/token_login.json", {
+    token: token
+  })
+    .then(function (response) {
+      context.setCentralState({ user: response.data, userSignedIn: true });
+      deviceStorage.saveItem(USER_KEY, JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+    });
+};
+
 export const signUp = (email, password, passwordConfirm, first_name, last_name, context) => {
   context.setState({signIninProgress: true});
   if(password !== passwordConfirm){
@@ -137,6 +149,26 @@ export const signInWithGoogle = async (context) => {
     }
     context.setState({signIninProgress: false});
   }
+};
+
+export const uploadAvatar = (imageData, fileName) => {
+  api.post("v1/upload_avatar",
+    {
+          avatar: {
+            image: imageData,
+            file_name: fileName,
+          }
+      }).then((response) => {
+        console.log(response.status);
+        if (response.status === 200) {
+          ToastAndroid.show(response.data.msg, ToastAndroid.SHORT);
+        } else {
+          ToastAndroid.show(response.data.msg, ToastAndroid.SHORT);
+          flash(response.data.msg, "Verifique sua conexão e tente novamente.");
+        }
+      }).catch(e => {
+        flash("Falha ao atualizar avatar.", "Verifique sua conexão e tente novamente.");
+      })
 };
 
 export default api;
