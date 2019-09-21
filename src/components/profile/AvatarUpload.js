@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import { View, TouchableOpacity, Image, Text } from 'react-native';
-import {baseStyles} from "../../styles/base";
+import { View, TouchableOpacity, Image } from 'react-native';
+import {baseStyles, colors} from "../../styles/base";
 import ImagePicker from 'react-native-image-crop-picker';
 import Modal from "react-native-modal";
 import {uploadAvatar} from '../../helpers/api';
+import { Card, Button, Text, Icon } from 'react-native-elements';
 
 //Avatar upload component
 export default class AvatarUpload extends Component {
@@ -65,16 +66,41 @@ export default class AvatarUpload extends Component {
           onBackdropPress={() => this.setState({ modalVisibility: false })}
           style={{
             flex: 1,
+            flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'flex-end',
             margin: 0,
           }}
         >
-          <TouchableOpacity onPress={() => this.selectFromCamera()}>
-            <Text>Select from camera...</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.selectImageFromGallery()}>
-            <Text>Select from gallery...</Text>
-          </TouchableOpacity>
+          <Card containerStyle={{width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10}}>
+            <Button
+              onPress={() => this.selectFromCamera()}
+              icon={
+                <Icon
+                  name="camera"
+                  size={18}
+                  color="white"
+                />
+              }
+              title={'Select from camera...'}
+              containerStyle={{marginBottom: 5}}
+              buttonStyle={{backgroundColor: colors.primary}}
+              titleStyle={{ marginLeft: 10 }}
+            />
+            <Button
+              onPress={() => this.selectImageFromGallery()}
+              icon={
+                <Icon
+                  name="photo"
+                  size={18}
+                  color="white"
+                />
+              }
+              title={'Select from gallery...'}
+              buttonStyle={{backgroundColor: colors.primary_dark}}
+              titleStyle={{ marginLeft: 10 }}
+            />
+          </Card>
         </Modal>
         <TouchableOpacity onPress={() => this.selectImage()}>
           <Image
