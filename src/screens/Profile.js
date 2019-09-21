@@ -6,6 +6,7 @@ import { CSComponent } from 'react-central-state';
 import deviceStorage from "../helpers/storage";
 import {USER_KEY} from "../helpers/config";
 import AvatarUpload from '../components/profile/AvatarUpload';
+import { Icon } from 'react-native-elements'
 
 class Profile extends Component {
 
@@ -37,6 +38,8 @@ class Profile extends Component {
     return (
       this.centralState.userSignedIn ?
       <View style={baseStyles.centerContainer}>
+        <Icon
+          name='rowing' />
         <AvatarUpload
           placeholderImage={
             this.placeholderUrl()

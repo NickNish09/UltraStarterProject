@@ -109,6 +109,8 @@ PODS:
     - React-Core
     - React-RCTImage
     - RSKImageCropper
+  - RNVectorIcons (6.6.0):
+    - React
   - RSKImageCropper (2.2.3)
   - yoga (0.60.3.React)
 
@@ -139,6 +141,7 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNGoogleSignin (from `../node_modules/react-native-google-signin`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -203,6 +206,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-google-signin"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -238,9 +243,10 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: e99188b8a89ea0edddc82d8831cd5142f4550fdc
   RNGoogleSignin: 40c1ac794c0eaaed2c6a42faf26972957e834f17
   RNImageCropPicker: c406db73f02f11bf3a887f856ff04ee50af173f4
+  RNVectorIcons: 66af4d5c8ff4f584c7b7cd9c4b0780920f27fce2
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   yoga: 88c514f310aff89b94a14c5fbf44b95735af0cb7
 
-PODFILE CHECKSUM: 798f667cda2704fed6ecee4f1351b9cad83ef2c7
+PODFILE CHECKSUM: da0040fe411c65803c948d40752f7b7437e8288a
 
 COCOAPODS: 1.5.3
