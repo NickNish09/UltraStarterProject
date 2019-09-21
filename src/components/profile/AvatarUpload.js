@@ -56,6 +56,11 @@ export default class AvatarUpload extends Component {
           isVisible={this.state.modalVisibility} style={{flex: 1}}
           backdropOpacity={0.5}
           onBackdropPress={() => this.setState({ modalVisibility: false })}
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            margin: 0,
+          }}
         >
           <TouchableOpacity onPress={() => this.selectFromCamera()}>
             <Text>Select from camera...</Text>
