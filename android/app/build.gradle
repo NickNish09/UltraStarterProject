@@ -134,6 +134,7 @@ android {
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative60"
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     splits {
         abi {
@@ -195,6 +196,7 @@ dependencies {
     implementation project(':react-native-navigation')
     implementation project(':@react-native-community_async-storage')
     implementation(project(":react-native-google-signin"))
+    implementation project(':react-native-image-crop-picker')
 
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
