@@ -1,4 +1,4 @@
-import {Navigation} from "react-native-navigation";
+import { Navigation } from "react-native-navigation";
 import { colors } from "../styles/base";
 
 const bottomTabs = {
@@ -14,7 +14,7 @@ const bottomTabs = {
                   title: {
                     text: "HOME",
                     alignment: "center",
-                    color: 'white'
+                    color: "white"
                   },
                   background: {
                     color: colors.primary_dark
@@ -30,7 +30,7 @@ const bottomTabs = {
             textColor: "white",
             selectedTextColor: colors.primary,
             selectedIconColor: colors.primary,
-            icon: require("../assets/icons/trophy-icon.png"),
+            icon: require("../assets/icons/trophy-icon.png")
           }
         }
       }
@@ -46,7 +46,7 @@ const bottomTabs = {
                   title: {
                     text: "BLANK",
                     alignment: "center",
-                    color: 'white'
+                    color: "white"
                   },
                   background: {
                     color: colors.primary_dark
@@ -62,7 +62,7 @@ const bottomTabs = {
             textColor: "white",
             selectedTextColor: colors.primary,
             selectedIconColor: colors.primary,
-            icon: require("../assets/icons/list_white.png"),
+            icon: require("../assets/icons/list_white.png")
           }
         }
       }
@@ -80,7 +80,7 @@ const bottomTabs = {
                   title: {
                     text: "PERFIL",
                     alignment: "center",
-                    color: 'white'
+                    color: "white"
                   },
                   background: {
                     color: colors.primary_dark
@@ -96,62 +96,67 @@ const bottomTabs = {
             textColor: "white",
             selectedTextColor: colors.primary,
             selectedIconColor: colors.primary,
-            icon: require("../assets/icons/user_white.png"),
+            icon: require("../assets/icons/user_white.png")
           }
         }
       }
-    },
+    }
     //FIM DA TELA DE PERFIL
   ],
-    options: {
+  options: {
     bottomTabs: {
       backgroundColor: colors.primary_dark
     }
   }
 };
 
-export const goToAuth = () => Navigation.setRoot({
-  root: {
-    stack: {
-      children: [
-        {
-          component: {
-            name: "SignIn",
-            options: {
-              topBar: {
-                title: {
-                  text: "Entrar",
-                  alignment: "center",
-                  color: 'white'
-                },
-                background: {
-                  color: colors.primary_dark
+export const goToAuth = () =>
+  Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              name: "SignIn",
+              options: {
+                topBar: {
+                  title: {
+                    text: "Entrar",
+                    alignment: "center",
+                    color: "white"
+                  },
+                  background: {
+                    color: colors.primary_dark
+                  }
                 }
               }
             }
           }
-        }
-      ]
+        ]
+      }
     }
-  }
-});
+  });
 
-export const goToHome = () => Navigation.setRoot({
-  root: {
-    bottomTabs: bottomTabs
-  }
-});
+export const goToHome = () =>
+  Navigation.setRoot({
+    root: {
+      bottomTabs: bottomTabs
+    }
+  });
 
-export const navigateTo = (componentName, screenName, componentId, passProps) => {
+export const navigateTo = (
+  componentName,
+  screenName,
+  componentId,
+  passProps
+) => {
   Navigation.push(componentId, {
     component: {
       name: componentName,
-      passProps: [
-        {
-        componentId: componentId
-        },
-        passProps
-      ],
+      passProps: {
+        componentId,
+        ...passProps
+      },
       options: {
         topBar: {
           visible: true,
@@ -173,10 +178,10 @@ export const navigateTo = (componentName, screenName, componentId, passProps) =>
   });
 };
 
-export const popNavigation = (componentId) => {
+export const popNavigation = componentId => {
   Navigation.pop(componentId);
 };
 
-export const popToRoot = (componentId) => {
+export const popToRoot = componentId => {
   Navigation.popToRoot(componentId);
 };
